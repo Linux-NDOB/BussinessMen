@@ -164,13 +164,13 @@ public class Sudo{
                 oValue =  45000;
 
                 else if (yWorked > 5 && yWorked <=10)
-                oValue =  350000;
+                oValue =  35000;
 
                 else if (yWorked > 3 && yWorked <=5)
-                oValue =  300000;
+                oValue =  30000;
 
                 else if (yWorked >= 0 && yWorked <3)
-                oValue =  250000;
+                oValue =  25000;
 
                 //Total value of overtime worked
                 double twValue = oValue*oWorked;
@@ -181,7 +181,7 @@ public class Sudo{
                 //Conditionals for stratum
 
                 if (gnu[i].getStratum() == 1 ||gnu[i].getStratum() == 2 )
-                sValue = 780000;
+                sValue = 78000;
 
                 else if (gnu[i].getStratum() > 2)
                 sValue = 0;
