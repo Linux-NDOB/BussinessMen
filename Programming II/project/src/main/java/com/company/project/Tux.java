@@ -93,6 +93,8 @@ public  class Tux {
         if(main==null)
         JOptionPane.showMessageDialog(null, "Vector without data!");
         else{
+            main.quickSort(0, main.gnu.length-1);
+            main.getShowInformation();
         try{
        
         } catch(NumberFormatException b){

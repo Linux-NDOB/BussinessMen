@@ -1,5 +1,7 @@
 package com.company.project;
 
+import javax.swing.JOptionPane;
+
 public class Pojo {
 
     // Attributes ID EMPLEADO - NOMBRE - GENERO- SALARIO BASICO
@@ -19,8 +21,11 @@ public class Pojo {
 
     private int dateOfBonding;
 
+    private double net;
+
+
     public Pojo(int id, String name, String gender, double basicSalary, int stratum, int ovtermineWorked,
-            int dateOfBonding) {
+            int dateOfBonding , double net) {
         this.id = id;
         this.name = name;
         this.gender = gender;
@@ -28,6 +33,7 @@ public class Pojo {
         this.stratum = stratum;
         this.ovtermineWorked = ovtermineWorked;
         this.dateOfBonding = dateOfBonding;
+        this.net = net;
     }
 
     public int getId() {
@@ -86,6 +92,30 @@ public class Pojo {
         this.dateOfBonding = dateOfBonding;
     }
 
-    
+    public double getNet() {
+        return net;
+    }
 
+    public void setNet(double net) {
+        this.net = net;
+    }
+
+    public void getInfo(){
+
+        String dat="";
+        dat+="The Employee information is:\n";
+        dat+="Id: "+id+"\n";
+        dat+="Name: "+name+"\n";
+        dat+="Gender: "+gender +"\n";
+        dat+="BasicSalary: " + basicSalary +"\n";
+        dat+="Stratum: "+stratum + "\n";
+        dat+="Overtime worked: "+ovtermineWorked +"\n";
+        dat+="Date of bonding: "+dateOfBonding + "\n";
+        dat+="Net: "+net +"\n";
+       
+        
+       
+        JOptionPane.showMessageDialog(null, dat);
+    }
 }
+

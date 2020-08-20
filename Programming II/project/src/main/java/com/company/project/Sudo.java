@@ -5,7 +5,16 @@ import javax.swing.JOptionPane;
 
 public class Sudo{
 
-    private Pojo gnu[];
+    public Pojo gnu[];
+
+    public int getSearchId(int id){
+        int i;  
+        for( i=0; i<gnu.length; i++){
+            if(gnu[i].getId() == id)
+                return i;
+        }
+        return -1;
+    }
     
     public Sudo(){
 
@@ -16,6 +25,13 @@ public class Sudo{
 
    
         int i, pos, id;
+
+        for(i=0; i<gnu.length; i++){
+
+            gnu[i] = new Pojo(-1, "", "", -1, -1, -1, -1 ,-1);
+
+        }
+
         String name;
         String gender;
         double basicSalary;
@@ -23,11 +39,7 @@ public class Sudo{
         int ovtermineWorked;
         int dateOfBonding;
 
-        for(i=0; i<gnu.length; i++){
-
-            gnu[i] = new Pojo(-1, "", "", -1, -1, -1, -1);
-
-        }
+        
        
         for(i=0; i<gnu.length; i++){
 
@@ -88,12 +100,17 @@ public class Sudo{
 
 
             gnu[i].setId(id);
+
             gnu[i].setName(name);
+
             gnu[i].setGender(gender);
+
             gnu[i].setBasicSalary(basicSalary);
+
             gnu[i].setStratum(stratum);
-            
+
             gnu[i].setOvtermineWorked(ovtermineWorked);
+
             gnu[i].setDateOfBonding(dateOfBonding);
 
             JOptionPane.showMessageDialog(null, 
@@ -103,34 +120,30 @@ public class Sudo{
        
     }
 
-    int getSearchId(int id){
-        int i;  
-        for( i=0; i<gnu.length; i++){
-            if(gnu[i].getId() == id)
-                return i;
+    public void getShowInformation(){
+        int i;
+        for(i=0; i<gnu.length; i++)
+            gnu[i].getInfo();
         }
-        return -1;
-    }
+
+   
     
     public void pointTwo(){
 
-        /* 2.Dado un ID Empleado el programa buscara su información en el vector
-         y si existe mostrar sus datos y el valor neto a pagar de ese empleado.	
-         
-         */
-
     JOptionPane.showMessageDialog(null,"Now you will find a employee by id,"+"\n"
-    +"show his data and the net value yo pay" );
+                                 +"show his data and the net value yo pay" );
 
-     int i; int id;
+     int id;
+
      id =Integer.parseInt(JOptionPane.showInputDialog(null, "Enter the id to search"));
      
     
         //Overtime worked value
         double oValue =0;
-       for ( i = 0; i < gnu.length; i++) {
+
+       for(int  i=0; i<gnu.length; i++) {
           
-            if (gnu[i].getId() == id) {
+            if ( gnu[i].getId() == id) {
                  
                 //Basic salary value
                 double bSalary = gnu[i].getBasicSalary(); 
@@ -189,14 +202,11 @@ public class Sudo{
                 //net to pay 
                 double  dP = (pDisHealth + pPention + pArl);
                 double subSum = (bSalary -dP);
-                double net = (subSum + twValue); 
+                double net = (subSum + twValue + sValue); 
+                gnu[i].setNet(net);
 
-
-
-
-
-
-     JOptionPane.showMessageDialog(null,
+    
+                                         JOptionPane.showMessageDialog(null,
                                          "The entered id is: "+ gnu[i].getId() + "\n" +
                                           "Basic salary : " + gnu[i].getBasicSalary() + "\n" +
                                           "Overtime Worked : " + gnu[i].getOvtermineWorked() + "\n" +
@@ -211,17 +221,106 @@ public class Sudo{
                 
                                           ); 
     
-     
-            }return;
-            
-       }
- 
- JOptionPane.showMessageDialog(null,"Id Not Registered");
-}
+            return;
+            }
+            JOptionPane.showMessageDialog(null, "Sorry id not found\n"
+                + "id not registered");    
+        }
+       
+    }
         
     
+public void quickSort(int Begin, int End) {
 
+    if(Begin>=End) return ;
 
+    double pivote = gnu[Begin].getNet();
+
+    int izq = Begin+1;
+    int der = End;
+
+    Pojo Tem=null;
+
+    while(izq<=der) {   
+    while(izq<=End && gnu[izq].getNet()> pivote) izq++;
+    while(der>Begin && gnu[der].getNet()<=pivote) der--;
+        
+    if(izq<der)
+    {
+
+    Tem = new Pojo( 
+    gnu[izq].getId(), 
+    gnu[izq].getName(),
+    gnu[izq].getGender(),
+    gnu[izq].getBasicSalary(),
+    gnu[izq].getStratum(),
+    gnu[izq].getOvtermineWorked() , 
+    gnu[izq].getDateOfBonding(), 
+    gnu[izq].getNet() );
+            
+    gnu[izq].setId(gnu[der].getId());
+    gnu[izq].setName(gnu[der].getName());
+    gnu[izq].setGender(gnu[der].getGender());
+    gnu[izq].setBasicSalary(gnu[der].getBasicSalary());
+    gnu[izq].setStratum(gnu[der].getStratum());
+    gnu[izq].setOvtermineWorked(gnu[der].getOvtermineWorked());
+    gnu[izq].setDateOfBonding(gnu[der].getDateOfBonding());
+    gnu[izq].setNet(gnu[der].getNet());
+    
+    gnu[der].setId(Tem.getId());
+    gnu[der].setName(Tem.getName());
+    gnu[der].setGender(Tem.getGender());
+    gnu[der].setBasicSalary(Tem.getBasicSalary());
+    gnu[der].setStratum(Tem.getStratum());
+    gnu[der].setOvtermineWorked(Tem.getOvtermineWorked());
+    gnu[der].setDateOfBonding(Tem.getDateOfBonding());
+    gnu[der].setNet(Tem.getNet());
+    
+       }
+    }
+    
+    if(der>Begin) {
+
+    Tem = new Pojo( 
+    gnu[Begin].getId(), 
+    gnu[Begin].getName(),
+    gnu[Begin].getGender(),
+    gnu[Begin].getBasicSalary(),
+    gnu[Begin].getStratum(),
+    gnu[Begin].getOvtermineWorked(),
+    gnu[Begin].getDateOfBonding(),
+    gnu[Begin].getNet());
+    
+    gnu[Begin].setId(gnu[der].getId());
+    gnu[Begin].setName(gnu[der].getName());
+    gnu[Begin].setGender(gnu[der].getGender());
+    gnu[Begin].setBasicSalary(gnu[der].getBasicSalary());
+    gnu[Begin].setStratum(gnu[der].getStratum());
+    gnu[Begin].setOvtermineWorked(gnu[der].getOvtermineWorked());
+    gnu[Begin].setDateOfBonding(gnu[der].getDateOfBonding());
+    gnu[Begin].setNet(gnu[der].getNet());
+        
+    gnu[der].setId(Tem.getId());
+    gnu[der].setName(Tem.getName());
+    gnu[der].setGender(Tem.getGender());
+    gnu[der].setBasicSalary(Tem.getBasicSalary());
+    gnu[der].setStratum(Tem.getStratum());
+    gnu[der].setOvtermineWorked(Tem.getOvtermineWorked());
+    gnu[der].setDateOfBonding(Tem.getDateOfBonding());
+    gnu[der].setNet(Tem.getNet());
+
+    }
+    quickSort(Begin, der-1);
+    quickSort(der+1, End);
+    }
+
+public void pointTree(){
+
+JOptionPane.showMessageDialog(null, "Vector sorted by salary from major to minor");
+   
+}
+
+public void pointFour(){}
 
     }
 
