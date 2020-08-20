@@ -93,9 +93,10 @@ public  class Tux {
         if(main==null)
         JOptionPane.showMessageDialog(null, "Vector without data!");
         else{
+        try{
+
             main.quickSort(0, main.gnu.length-1);
             main.getShowInformation();
-        try{
        
         } catch(NumberFormatException b){
         JOptionPane.showMessageDialog(null, "DO NOT INSERT LETERS, SIGNS\n"
@@ -109,6 +110,9 @@ public  class Tux {
         JOptionPane.showMessageDialog(null, "Vector without data!");
         else{
         try{
+        
+            main.setSortSelection();
+            main.getShowInformation();
        
         }catch(ArrayIndexOutOfBoundsException c){
         JOptionPane.showMessageDialog(null,"Please dont do it");
@@ -121,6 +125,9 @@ public  class Tux {
         JOptionPane.showMessageDialog(null, "Vector without data!");
         else{
         try{
+
+            main.shellSort();
+            main.getShowInformation();
        
         }catch(ArrayIndexOutOfBoundsException c){
         JOptionPane.showMessageDialog(null,"Please be logic");

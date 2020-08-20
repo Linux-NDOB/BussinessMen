@@ -320,9 +320,127 @@ JOptionPane.showMessageDialog(null, "Vector sorted by salary from major to minor
    
 }
 
-public void pointFour(){}
 
-    }
+
+    public int minorPosition(int Start){
+        int i; 
+        int posMenorID; 
+        String minorValue; 
+        posMenorID = Start;
+        
+        minorValue = gnu[Start].getName();
+        
+        for (i=Start+1; i<gnu.length; i++){
+         
+        if (gnu[i].getName().compareTo(minorValue)< 0){ 
+         minorValue= gnu[i].getName(); 
+         posMenorID = i;
+            }
+        }
+       
+        return posMenorID;
+        }
+    
+        public void setSortSelection(){ 
+        
+        Pojo Tem=null;
+        int i, posMenor;
+        
+        for (i=0; i<gnu.length; i++){
+            
+            posMenor = minorPosition(i);
+        
+            if(posMenor!=i){
+                
+                Tem = new Pojo( 
+                gnu[i].getId(), 
+                gnu[i].getName(),
+                gnu[i].getGender(),
+                gnu[i].getBasicSalary(),
+                gnu[i].getStratum(),
+                gnu[i].getOvtermineWorked() , 
+                gnu[i].getDateOfBonding(), 
+                gnu[i].getNet() 
+                );
+               
+                gnu[i].setId(gnu[posMenor].getId());
+                gnu[i].setName(gnu[posMenor].getName());
+                gnu[i].setGender(gnu[posMenor].getGender());
+                gnu[i].setBasicSalary(gnu[posMenor].getBasicSalary());
+                gnu[i].setStratum(gnu[posMenor].getStratum());
+                gnu[i].setOvtermineWorked(gnu[posMenor].getOvtermineWorked());
+                gnu[i].setDateOfBonding(gnu[posMenor].getDateOfBonding());
+                gnu[i].setNet(gnu[posMenor].getNet());
+                
+                gnu[posMenor].setId(Tem.getId());
+                gnu[posMenor].setName(Tem.getName());
+                gnu[posMenor].setGender(Tem.getGender());
+                gnu[posMenor].setBasicSalary(Tem.getBasicSalary());
+                gnu[posMenor].setStratum(Tem.getStratum());
+                gnu[posMenor].setOvtermineWorked(Tem.getOvtermineWorked());
+                gnu[posMenor].setDateOfBonding(Tem.getDateOfBonding());
+                gnu[posMenor].setNet(Tem.getNet());
+            }
+        } 
+        JOptionPane.showMessageDialog(null, "Vector sorted in  Asc order!");
+        }
+
+        public void shellSort( ){
+            int salto, i;
+            boolean Changes;
+
+            Pojo Tem=null;
+
+            for(salto=gnu.length/2; salto!=0; salto/=2){
+
+            Changes=true;
+
+            while(Changes){ 
+
+            Changes=false;
+
+            for(i=salto; i<gnu.length; i++) 
+
+            if(gnu[i-salto].getStratum() < gnu[i].getStratum()){ 
+           
+            Tem = new Pojo( 
+            gnu[i].getId(), 
+            gnu[i].getName(),
+            gnu[i].getGender(),
+            gnu[i].getBasicSalary(),
+            gnu[i].getStratum(),
+            gnu[i].getOvtermineWorked() , 
+            gnu[i].getDateOfBonding(), 
+            gnu[i].getNet());
+                        
+            gnu[i].setId(gnu[i-salto].getId());
+            gnu[i].setName(gnu[i-salto].getName());
+            gnu[i].setGender(gnu[i-salto].getGender());
+            gnu[i].setBasicSalary(gnu[i-salto].getBasicSalary());
+            gnu[i].setStratum(gnu[i-salto].getStratum());
+            gnu[i].setOvtermineWorked(gnu[i-salto].getOvtermineWorked());
+            gnu[i].setDateOfBonding(gnu[i-salto].getDateOfBonding());
+            gnu[i].setNet(gnu[i-salto].getNet());
+                        
+                        
+            gnu[i-salto].setId(Tem.getId());
+            gnu[i-salto].setName(Tem.getName());
+            gnu[i-salto].setGender(Tem.getGender());
+            gnu[i-salto].setBasicSalary(Tem.getBasicSalary());
+            gnu[i-salto].setStratum(Tem.getStratum());
+            gnu[i-salto].setOvtermineWorked(Tem.getId());
+            gnu[i-salto].setDateOfBonding(Tem.getDateOfBonding());
+            gnu[i-salto].setNet(Tem.getNet());
+                        
+            Changes=true; 
+                         }
+                      }
+                  }
+               }
+            
+}
+
+    
 
 
     
