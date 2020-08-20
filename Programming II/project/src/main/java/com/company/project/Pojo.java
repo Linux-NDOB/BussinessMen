@@ -11,7 +11,7 @@ public class Pojo {
 
     private String gender;
 
-    private float basicSalary;
+    private double basicSalary;
 
     private int stratum;
 
@@ -19,7 +19,7 @@ public class Pojo {
 
     private int dateOfBonding;
 
-    public Pojo(int id, String name, String gender, float basicSalary, int stratum, int ovtermineWorked,
+    public Pojo(int id, String name, String gender, double basicSalary, int stratum, int ovtermineWorked,
             int dateOfBonding) {
         this.id = id;
         this.name = name;
@@ -54,11 +54,11 @@ public class Pojo {
         this.gender = gender;
     }
 
-    public float getBasicSalary() {
+    public double getBasicSalary() {
         return basicSalary;
     }
 
-    public void setBasicSalary(float basicSalary) {
+    public void setBasicSalary(double basicSalary) {
         this.basicSalary = basicSalary;
     }
 

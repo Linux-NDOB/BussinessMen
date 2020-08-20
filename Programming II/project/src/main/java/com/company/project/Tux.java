@@ -84,6 +84,7 @@ public  class Tux {
         JOptionPane.showMessageDialog(null, "Vector without data!");
         else{
         
+            main.pointTwo();
         
         }
         break;

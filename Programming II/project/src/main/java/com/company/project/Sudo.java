@@ -18,7 +18,7 @@ public class Sudo{
         int i, pos, id;
         String name;
         String gender;
-        float basicSalary;
+        double basicSalary;
         int stratum;
         int ovtermineWorked;
         int dateOfBonding;
@@ -60,8 +60,8 @@ public class Sudo{
 
 
 
-            basicSalary = Float.parseFloat(JOptionPane.showInputDialog(
-            "Please enter the employee basic salary: "));
+            basicSalary = Double.parseDouble(JOptionPane.showInputDialog(
+            "Please enter the employee basic salary: ", 877000));
 
 
             
@@ -84,7 +84,7 @@ public class Sudo{
             "Please enter the overtime worked number"));
 
             dateOfBonding = Integer.parseInt(JOptionPane.showInputDialog(null,
-             "Please enter the day of "));
+             "Please enter the Year of bonding "));
 
 
             gnu[i].setId(id);
@@ -125,15 +125,90 @@ public class Sudo{
      int i; int id;
      id =Integer.parseInt(JOptionPane.showInputDialog(null, "Enter the id to search"));
      
-       for (i = 0; i < gnu.length; i ++) {
+    
+        //Overtime worked value
+        double oValue =0;
+       for ( i = 0; i < gnu.length; i++) {
           
             if (gnu[i].getId() == id) {
-     
-     
-     JOptionPane.showMessageDialog(null, "The entered id is: "+ gnu[i].getId() + "\n" +
+                 
+                //Basic salary value
+                double bSalary = gnu[i].getBasicSalary(); 
+
+                //Contribution to health
+                double pDisHealth = ((4*bSalary)/100);
+                
+
+                //Pension Contribution 
+                double pPention = ((3.75*bSalary)/100); 
+                
+
+                //ARL contribution
+                double pArl =  ((2*bSalary)/100); 
+                
+
+                //Year of bonding
+                int dateBonding = gnu[i].getDateOfBonding();
+
+                //Overtime worked
+                int oWorked = gnu[i].getOvtermineWorked();
+
+               
+                
+                //2020 is the current year
+                int yWorked = ((dateBonding - 2020)*-1);
+
+                //Conditionals for overtime value
+
+                if(yWorked > 10)
+                oValue =  45000;
+
+                else if (yWorked > 5 && yWorked <=10)
+                oValue =  350000;
+
+                else if (yWorked > 3 && yWorked <=5)
+                oValue =  300000;
+
+                else if (yWorked >= 0 && yWorked <3)
+                oValue =  250000;
+
+                //Total value of overtime worked
+                double twValue = oValue*oWorked;
+
+                //Transportation subsidy value
+                double sValue = 0;
+
+                //Conditionals for stratum
+
+                if (gnu[i].getStratum() == 1 ||gnu[i].getStratum() == 2 )
+                sValue = 780000;
+
+                else if (gnu[i].getStratum() > 2)
+                sValue = 0;
+
+                //net to pay 
+                double  dP = (pDisHealth + pPention + pArl);
+                double subSum = (bSalary -dP);
+                double net = (subSum + twValue); 
+
+
+
+
+
+
+     JOptionPane.showMessageDialog(null,
+                                         "The entered id is: "+ gnu[i].getId() + "\n" +
                                           "Basic salary : " + gnu[i].getBasicSalary() + "\n" +
                                           "Overtime Worked : " + gnu[i].getOvtermineWorked() + "\n" +
-                                          ""
+                                          "Overtime Worked value: " + oValue + "\n" +
+                                          "Value Overtime Worked : " + twValue + "\n" +
+                                          "Contibution to heatlh(4%) : " + pDisHealth + "\n" +
+                                          "Contibution to pention : " + pPention + "\n" +
+                                          "Contibution to ARL : " + pArl + "\n" +
+                                          "Total contribution : " + dP + "\n"+
+                                          "Transportation subsidy : " + sValue + "\n"+
+                                          "NET TO PAY : " + net
+                
                                           ); 
     
      
@@ -141,37 +216,10 @@ public class Sudo{
             
        }
  
- JOptionPane.showMessageDialog(null,"Codigo no registrado");
+ JOptionPane.showMessageDialog(null,"Id Not Registered");
 }
         
-
-        
-
-
-
-
-
-
-        /*
-        El neto a pagar de cada empleado es calculado bajo las siguientes condiciones:
-
-Se debe descontar 4% del salario básico para aportes a salud, 3,75% para aportes a pensión y 2% para ARL.
-Se debe sumar en el neto a pagar el devengado por horas extra que se obtiene de la cantidad laborada por el valor de las H.E
-La hora extra tendrá un valor de $45.000 si el empleado tiene más de 10 años en la empresa, de $35.000 si tiene entre 10 y 5 años, de $ 30.000 si tiene entre 5 y 3 años y de $ 25.000 si tiene menos de 3 años.
-Los empleados de ESTRATO 1 y 2 tienen un subsidio de transporte equivalente a $78.000.
-
-Al finalizar se debe arrojar el detallado de nómina para el empleado donde especifica sus ganancias, descuentos y el neto a pagar así:
-
-
-SUELDO BASICO			xxxxx
-H.E LABORADAS			xxxxx	
-VALOR H.E				xxxxx
-TOTAL H.E				xxxxx
-APORTE SALUD			xxxxx
-APORTE PENSION			xxxxx
-APORTE ARL				xxxxx	
-SUBSIDIO TTE				xxxxx
-*/
+    
 
 
 
