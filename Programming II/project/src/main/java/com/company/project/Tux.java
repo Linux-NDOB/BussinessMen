@@ -1,5 +1,6 @@
 package com.company.project;
 
+import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -26,7 +27,7 @@ public  class Tux {
         //rgb(120,144,156)
         UIManager UI=new UIManager();
         UIManager.put("OptionPane.background",new ColorUIResource(0,150,136));
-        UIManager.put("Panel.background",new ColorUIResource(120,144,156));
+        UIManager.put("Panel.background",new ColorUIResource(238,238,238));
         
            
          
@@ -138,6 +139,11 @@ public  class Tux {
         case 6:
         Exit=JOptionPane.showConfirmDialog(null, "¿Do you want to exit from the Menu?");
         if (Exit==0) {
+
+                ImageIcon shell = new ImageIcon("Shell.jpg");
+           
+                JOptionPane.showMessageDialog(
+                null,"","Shell IMAGE",JOptionPane.INFORMATION_MESSAGE,shell);
            
          
         break;

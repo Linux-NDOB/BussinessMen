@@ -19,20 +19,30 @@ public class Pojo {
 
     private int ovtermineWorked;
 
-    private int dateOfBonding;
-
     private double net;
 
+    private int day;
+    
+    private int month;
 
-    public Pojo(int id, String name, String gender, double basicSalary, int stratum, int ovtermineWorked,
-            int dateOfBonding , double net) {
+    private int year;
+
+
+    public Pojo( int id, int day, int month, int year,
+                 String name, String gender, 
+                 double basicSalary, 
+                 int stratum, int ovtermineWorked
+                 , double net) {
+
         this.id = id;
         this.name = name;
         this.gender = gender;
         this.basicSalary = basicSalary;
         this.stratum = stratum;
         this.ovtermineWorked = ovtermineWorked;
-        this.dateOfBonding = dateOfBonding;
+        this.day = day;
+        this.month = month;
+        this.year = year;
         this.net = net;
     }
 
@@ -84,14 +94,6 @@ public class Pojo {
         this.ovtermineWorked = ovtermineWorked;
     }
 
-    public int getDateOfBonding() {
-        return dateOfBonding;
-    }
-
-    public void setDateOfBonding(int dateOfBonding) {
-        this.dateOfBonding = dateOfBonding;
-    }
-
     public double getNet() {
         return net;
     }
@@ -110,12 +112,39 @@ public class Pojo {
         dat+="BasicSalary: " + basicSalary +"\n";
         dat+="Stratum: "+stratum + "\n";
         dat+="Overtime worked: "+ovtermineWorked +"\n";
-        dat+="Date of bonding: "+dateOfBonding + "\n";
+        dat+="Date of bonding: "+ "\n";
+        dat+="Day: "+ day +"\n";
+        dat+="Month: "+ month +"\n";
+        dat+="Year: "+ year +"\n";
         dat+="Net: "+net +"\n";
        
         
        
         JOptionPane.showMessageDialog(null, dat);
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 }
 

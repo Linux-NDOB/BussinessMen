@@ -1,6 +1,6 @@
 package com.company.project;
 
-import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class Sudo{
@@ -18,7 +18,7 @@ public class Sudo{
     
     public Sudo(){
 
-        int pillow = Integer.parseInt(JOptionPane.showInputDialog(
+        /*int pillow = Integer.parseInt(JOptionPane.showInputDialog(
         "Please enter the vector length: "));
 
         gnu = new Pojo[pillow];
@@ -31,13 +31,44 @@ public class Sudo{
             gnu[i] = new Pojo(-1, "", "", -1, -1, -1, -1 ,-1);
 
         }
+        */
+
+        ImageIcon icon;
+        icon = new ImageIcon("Box.png");
+        
+        
+        Object a = JOptionPane.showInputDialog(
+        null, "Please insert\n"+
+        "the Vector Length", "Consesionary",
+        JOptionPane.INFORMATION_MESSAGE, icon,null,"");
+        
+        int x=Integer.parseInt((String) a); 
+       
+        gnu = new Pojo[x];
+  
+        int i, pos, id;
+
+        for(i=0; i<gnu.length; i++){
+
+            gnu[i] = new Pojo(-1,-1,-1,-1, "", "", -1, -1,-1,-1);
+            
+        }
 
         String name;
+
         String gender;
+
         double basicSalary;
+
         int stratum;
+
         int ovtermineWorked;
-        int dateOfBonding;
+
+        int day;
+
+        int month;
+
+        int year;
 
         
        
@@ -49,12 +80,61 @@ public class Sudo{
 
                 pos=getSearchId(id);
 
-                if(pos>=0)
+                if(pos>=0){
 
                     JOptionPane.showMessageDialog(null, 
                     "the entered employee id is used , please try again");
+                
+                }else{
+                    
+                JOptionPane.showMessageDialog(null, 
+                "Can continue");
+                
+                }
 
-            }while(pos>=0);
+
+
+                day = Integer.parseInt(JOptionPane.showInputDialog( null, 
+                "Please enter the employee day of bonding(no more than 31 days)"));
+    
+
+                if(day <1 || day > 31){
+
+                    JOptionPane.showMessageDialog(null, 
+                    "Doesn't exist A month that have more than 31 days" + "\n" +
+                    "nor a month with less that one day...............");
+                }
+
+
+                month = Integer.parseInt(JOptionPane.showInputDialog( null, 
+                "Please enter the employee month of bonding "));
+
+                if (month <1 || month > 12) {
+
+                    JOptionPane.showMessageDialog(null, 
+                    "Doesn't exist A year with have more than 12 months" + "\n" +
+                    "nor a year with less that one month..............");
+                    
+                } 
+
+
+                year = Integer.parseInt(JOptionPane.showInputDialog( null, 
+                "Please enter the employee year of bonding "));
+
+
+                if(year <1950 || year >2020) {
+
+                    JOptionPane.showMessageDialog(null, 
+                    "2020 is the current year and" + "\n" +
+                    "70 years is the major age before pention");
+
+                    
+                }
+                     
+
+            }while(pos >= 0 && day >1 && day <31 && month >1
+                   && month <12 && year <= 1950 && year <=2020 );
+
 
             name = JOptionPane.showInputDialog("Please enter the employee name: ");
 
@@ -71,7 +151,7 @@ public class Sudo{
 
 
 
-
+            //Colombian basic salary suggested
             basicSalary = Double.parseDouble(JOptionPane.showInputDialog(
             "Please enter the employee basic salary: ", 877000));
 
@@ -79,13 +159,13 @@ public class Sudo{
             
             String toParse;
             
-           Object tyStratum[] = new Object[]{
+            Object tyStratum[] = new Object[]{
                "1","2","3","4","5","6"};
    
-           Object xStratum = JOptionPane.showInputDialog(null,
-           "Please choose your stratum",
+            Object xStratum = JOptionPane.showInputDialog(null,
+           "Please choose the employee stratum: ",
                                        "Stratum Selection",
-           JOptionPane.QUESTION_MESSAGE,null,tyStratum ,tyStratum[0]);
+            JOptionPane.QUESTION_MESSAGE,null,tyStratum ,tyStratum[0]);
    
             toParse = xStratum.toString();
         
@@ -95,10 +175,9 @@ public class Sudo{
             ovtermineWorked = Integer.parseInt(JOptionPane.showInputDialog( null, 
             "Please enter the overtime worked number"));
 
-            dateOfBonding = Integer.parseInt(JOptionPane.showInputDialog(null,
-             "Please enter the Year of bonding "));
 
 
+            //Set value to the attributes
             gnu[i].setId(id);
 
             gnu[i].setName(name);
@@ -111,10 +190,34 @@ public class Sudo{
 
             gnu[i].setOvtermineWorked(ovtermineWorked);
 
-            gnu[i].setDateOfBonding(dateOfBonding);
+            gnu[i].setDay(day);
 
-            JOptionPane.showMessageDialog(null, 
-            "Satisfactorily registered Employee im posistion : "+i+"!");
+            gnu[i].setMonth(month);
+
+            gnu[i].setYear(year);
+
+
+            //Show an man image or a woman image is gender is setted
+            if(gnu[i].getGender().equals("M")){
+
+                ImageIcon Man = new ImageIcon("Man.jpg");
+           
+                JOptionPane.showMessageDialog(
+                null,"","Employee IMAGE",JOptionPane.INFORMATION_MESSAGE,Man);
+
+
+            }
+            else 
+                if(gnu[i].getGender().equals("F")){
+
+                    ImageIcon Woman = new ImageIcon("Woman.jpg");
+           
+                JOptionPane.showMessageDialog(
+                null,"","Employee IMAGE",JOptionPane.INFORMATION_MESSAGE,Woman);
+
+
+
+                }
         }
 
        
@@ -141,9 +244,13 @@ public class Sudo{
         //Overtime worked value
         double oValue =0;
 
+
+       //Walk the vector
        for(int  i=0; i<gnu.length; i++) {
-          
+
+            //Conditionals
             if ( gnu[i].getId() == id) {
+
                  
                 //Basic salary value
                 double bSalary = gnu[i].getBasicSalary(); 
@@ -161,15 +268,18 @@ public class Sudo{
                 
 
                 //Year of bonding
-                int dateBonding = gnu[i].getDateOfBonding();
+                int dateBonding = gnu[i].getYear();
+
 
                 //Overtime worked
                 int oWorked = gnu[i].getOvtermineWorked();
 
-               
+
                 
                 //2020 is the current year
                 int yWorked = ((dateBonding - 2020)*-1);
+
+
 
                 //Conditionals for overtime value
 
@@ -193,16 +303,20 @@ public class Sudo{
 
                 //Conditionals for stratum
 
-                if (gnu[i].getStratum() == 1 ||gnu[i].getStratum() == 2 )
+                if (gnu[i].getStratum() == 1 || gnu[i].getStratum() == 2 )
+
                 sValue = 78000;
 
                 else if (gnu[i].getStratum() > 2)
+
                 sValue = 0;
 
-                //net to pay 
+                //net to pay
+
                 double  dP = (pDisHealth + pPention + pArl);
                 double subSum = (bSalary -dP);
                 double net = (subSum + twValue + sValue); 
+
                 gnu[i].setNet(net);
 
     
@@ -249,31 +363,37 @@ public void quickSort(int Begin, int End) {
     {
 
     Tem = new Pojo( 
-    gnu[izq].getId(), 
+    gnu[izq].getId(),
+    gnu[izq].getDay(),
+    gnu[izq].getMonth(),
+    gnu[izq].getYear(), 
     gnu[izq].getName(),
     gnu[izq].getGender(),
     gnu[izq].getBasicSalary(),
     gnu[izq].getStratum(),
     gnu[izq].getOvtermineWorked() , 
-    gnu[izq].getDateOfBonding(), 
     gnu[izq].getNet() );
             
     gnu[izq].setId(gnu[der].getId());
+    gnu[izq].setDay(gnu[der].getDay());
+    gnu[izq].setMonth(gnu[der].getMonth());
+    gnu[izq].setYear(gnu[der].getYear());
     gnu[izq].setName(gnu[der].getName());
     gnu[izq].setGender(gnu[der].getGender());
     gnu[izq].setBasicSalary(gnu[der].getBasicSalary());
     gnu[izq].setStratum(gnu[der].getStratum());
     gnu[izq].setOvtermineWorked(gnu[der].getOvtermineWorked());
-    gnu[izq].setDateOfBonding(gnu[der].getDateOfBonding());
     gnu[izq].setNet(gnu[der].getNet());
     
     gnu[der].setId(Tem.getId());
+    gnu[der].setDay(Tem.getDay());
+    gnu[der].setMonth(Tem.getMonth());
+    gnu[der].setYear(Tem.getYear());
     gnu[der].setName(Tem.getName());
     gnu[der].setGender(Tem.getGender());
     gnu[der].setBasicSalary(Tem.getBasicSalary());
     gnu[der].setStratum(Tem.getStratum());
     gnu[der].setOvtermineWorked(Tem.getOvtermineWorked());
-    gnu[der].setDateOfBonding(Tem.getDateOfBonding());
     gnu[der].setNet(Tem.getNet());
     
        }
@@ -283,40 +403,45 @@ public void quickSort(int Begin, int End) {
 
     Tem = new Pojo( 
     gnu[Begin].getId(), 
+    gnu[Begin].getDay(),
+    gnu[Begin].getMonth(),
+    gnu[Begin].getYear(),
     gnu[Begin].getName(),
     gnu[Begin].getGender(),
     gnu[Begin].getBasicSalary(),
     gnu[Begin].getStratum(),
     gnu[Begin].getOvtermineWorked(),
-    gnu[Begin].getDateOfBonding(),
     gnu[Begin].getNet());
     
     gnu[Begin].setId(gnu[der].getId());
+    gnu[Begin].setDay(gnu[der].getDay());
+    gnu[Begin].setMonth(gnu[der].getMonth());
+    gnu[Begin].setYear(gnu[der].getYear());
     gnu[Begin].setName(gnu[der].getName());
     gnu[Begin].setGender(gnu[der].getGender());
     gnu[Begin].setBasicSalary(gnu[der].getBasicSalary());
     gnu[Begin].setStratum(gnu[der].getStratum());
     gnu[Begin].setOvtermineWorked(gnu[der].getOvtermineWorked());
-    gnu[Begin].setDateOfBonding(gnu[der].getDateOfBonding());
     gnu[Begin].setNet(gnu[der].getNet());
         
     gnu[der].setId(Tem.getId());
+    gnu[der].setDay(Tem.getDay());
+    gnu[der].setMonth(Tem.getMonth());
+    gnu[der].setYear(Tem.getYear());
     gnu[der].setName(Tem.getName());
     gnu[der].setGender(Tem.getGender());
     gnu[der].setBasicSalary(Tem.getBasicSalary());
     gnu[der].setStratum(Tem.getStratum());
     gnu[der].setOvtermineWorked(Tem.getOvtermineWorked());
-    gnu[der].setDateOfBonding(Tem.getDateOfBonding());
     gnu[der].setNet(Tem.getNet());
 
     }
     quickSort(Begin, der-1);
     quickSort(der+1, End);
-    }
 
-public void pointTree(){
 
-JOptionPane.showMessageDialog(null, "Vector sorted by salary from major to minor");
+JOptionPane.showMessageDialog(null,
+"Vector sorted by salary from major to minor");
    
 }
 
@@ -354,38 +479,48 @@ JOptionPane.showMessageDialog(null, "Vector sorted by salary from major to minor
                 
                 Tem = new Pojo( 
                 gnu[i].getId(), 
+                gnu[i].getDay(), 
+                gnu[i].getMonth(), 
+                gnu[i].getYear(), 
                 gnu[i].getName(),
                 gnu[i].getGender(),
                 gnu[i].getBasicSalary(),
                 gnu[i].getStratum(),
                 gnu[i].getOvtermineWorked() , 
-                gnu[i].getDateOfBonding(), 
                 gnu[i].getNet() 
                 );
                
                 gnu[i].setId(gnu[posMenor].getId());
+                gnu[i].setDay(gnu[posMenor].getDay());
+                gnu[i].setMonth(gnu[posMenor].getMonth());
+                gnu[i].setYear(gnu[posMenor].getYear());
                 gnu[i].setName(gnu[posMenor].getName());
                 gnu[i].setGender(gnu[posMenor].getGender());
                 gnu[i].setBasicSalary(gnu[posMenor].getBasicSalary());
                 gnu[i].setStratum(gnu[posMenor].getStratum());
                 gnu[i].setOvtermineWorked(gnu[posMenor].getOvtermineWorked());
-                gnu[i].setDateOfBonding(gnu[posMenor].getDateOfBonding());
                 gnu[i].setNet(gnu[posMenor].getNet());
                 
                 gnu[posMenor].setId(Tem.getId());
+                gnu[posMenor].setDay(Tem.getDay());
+                gnu[posMenor].setMonth(Tem.getMonth());
+                gnu[posMenor].setYear(Tem.getYear());
                 gnu[posMenor].setName(Tem.getName());
                 gnu[posMenor].setGender(Tem.getGender());
                 gnu[posMenor].setBasicSalary(Tem.getBasicSalary());
                 gnu[posMenor].setStratum(Tem.getStratum());
                 gnu[posMenor].setOvtermineWorked(Tem.getOvtermineWorked());
-                gnu[posMenor].setDateOfBonding(Tem.getDateOfBonding());
                 gnu[posMenor].setNet(Tem.getNet());
             }
+
         } 
+
         JOptionPane.showMessageDialog(null, "Vector sorted in  Asc order!");
+
         }
 
         public void shellSort( ){
+
             int salto, i;
             boolean Changes;
 
@@ -405,34 +540,41 @@ JOptionPane.showMessageDialog(null, "Vector sorted by salary from major to minor
            
             Tem = new Pojo( 
             gnu[i].getId(), 
+            gnu[i].getDay(), 
+            gnu[i].getMonth(), 
+            gnu[i].getYear(), 
             gnu[i].getName(),
             gnu[i].getGender(),
             gnu[i].getBasicSalary(),
             gnu[i].getStratum(),
             gnu[i].getOvtermineWorked() , 
-            gnu[i].getDateOfBonding(), 
             gnu[i].getNet());
                         
             gnu[i].setId(gnu[i-salto].getId());
+            gnu[i].setDay(gnu[i-salto].getDay());
+            gnu[i].setMonth(gnu[i-salto].getMonth());
+            gnu[i].setYear(gnu[i-salto].getYear());
             gnu[i].setName(gnu[i-salto].getName());
             gnu[i].setGender(gnu[i-salto].getGender());
             gnu[i].setBasicSalary(gnu[i-salto].getBasicSalary());
             gnu[i].setStratum(gnu[i-salto].getStratum());
             gnu[i].setOvtermineWorked(gnu[i-salto].getOvtermineWorked());
-            gnu[i].setDateOfBonding(gnu[i-salto].getDateOfBonding());
             gnu[i].setNet(gnu[i-salto].getNet());
                         
                         
             gnu[i-salto].setId(Tem.getId());
+            gnu[i-salto].setDay(Tem.getDay());
+            gnu[i-salto].setMonth(Tem.getMonth());
+            gnu[i-salto].setYear(Tem.getYear());
             gnu[i-salto].setName(Tem.getName());
             gnu[i-salto].setGender(Tem.getGender());
             gnu[i-salto].setBasicSalary(Tem.getBasicSalary());
             gnu[i-salto].setStratum(Tem.getStratum());
             gnu[i-salto].setOvtermineWorked(Tem.getId());
-            gnu[i-salto].setDateOfBonding(Tem.getDateOfBonding());
             gnu[i-salto].setNet(Tem.getNet());
                         
             Changes=true; 
+
                          }
                       }
                   }
