@@ -108,6 +108,8 @@ public class Sudo{
                     JOptionPane.showMessageDialog(null, 
                     "Doesn't exist A year with have more than 12 months" + "\n" +
                     "nor a year with less that one month..............");
+
+                    break;
                     
                 } 
 
@@ -126,8 +128,8 @@ public class Sudo{
                 }
                      
 
-            }while(pos >= 0 && day >1 && day <31 && month >1
-                   && month <12 && year <= 1950 && year <=2020 );
+            }while(pos >= 0 && day <1 && day >31 && month <1
+                   && month >12 && year < 1950 && year > 2020 );
 
 
             name = JOptionPane.showInputDialog("Please enter the employee name: ");
