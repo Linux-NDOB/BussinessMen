@@ -85,14 +85,8 @@ public class Sudo{
                     JOptionPane.showMessageDialog(null, 
                     "the entered employee id is used , please try again");
                 
-                }else{
-                    
-                JOptionPane.showMessageDialog(null, 
-                "Can continue");
-                
                 }
-
-
+                
 
                 day = Integer.parseInt(JOptionPane.showInputDialog( null, 
                 "Please enter the employee day of bonding(no more than 31 days)"));
@@ -200,7 +194,7 @@ public class Sudo{
             //Show an man image or a woman image is gender is setted
             if(gnu[i].getGender().equals("M")){
 
-                ImageIcon Man = new ImageIcon("Man.jpg");
+                ImageIcon Man = new ImageIcon("Man.png");
            
                 JOptionPane.showMessageDialog(
                 null,"","Employee IMAGE",JOptionPane.INFORMATION_MESSAGE,Man);
@@ -242,7 +236,7 @@ public class Sudo{
      
     
         //Overtime worked value
-        double oValue =0;
+        double oValue = 0;
 
 
        //Walk the vector
@@ -283,7 +277,7 @@ public class Sudo{
 
                 //Conditionals for overtime value
 
-                if(yWorked > 10)
+                if(yWorked > 10 && yWorked < 70)
                 oValue =  45000;
 
                 else if (yWorked > 5 && yWorked <=10)
@@ -292,7 +286,7 @@ public class Sudo{
                 else if (yWorked > 3 && yWorked <=5)
                 oValue =  30000;
 
-                else if (yWorked >= 0 && yWorked <3)
+                else if (yWorked >=1 && yWorked <3)
                 oValue =  25000;
 
                 //Total value of overtime worked
@@ -321,24 +315,37 @@ public class Sudo{
 
     
                                          JOptionPane.showMessageDialog(null,
+
                                          "The entered id is: "+ gnu[i].getId() + "\n" +
+
                                           "Basic salary : " + gnu[i].getBasicSalary() + "\n" +
+
                                           "Overtime Worked : " + gnu[i].getOvtermineWorked() + "\n" +
+
                                           "Overtime Worked value: " + oValue + "\n" +
+
                                           "Value Overtime Worked : " + twValue + "\n" +
+
                                           "Contibution to heatlh(4%) : " + pDisHealth + "\n" +
+
                                           "Contibution to pention : " + pPention + "\n" +
+
                                           "Contibution to ARL : " + pArl + "\n" +
+
                                           "Total contribution : " + dP + "\n"+
+
                                           "Transportation subsidy : " + sValue + "\n"+
+
                                           "NET TO PAY : " + net
                 
                                           ); 
     
             return;
+            
             }
+            
             JOptionPane.showMessageDialog(null, "Sorry id not found\n"
-                + "id not registered");    
+                + "id not registered yet");    
         }
        
     }
@@ -440,8 +447,8 @@ public void quickSort(int Begin, int End) {
     quickSort(der+1, End);
 
 
-JOptionPane.showMessageDialog(null,
-"Vector sorted by salary from major to minor");
+    JOptionPane.showMessageDialog(null,
+    "Vector sorted by salary from major to minor");
    
 }
 

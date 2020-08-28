@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 public class Pojo {
 
-    // Attributes ID EMPLEADO - NOMBRE - GENERO- SALARIO BASICO
+    // Attributes:  ID EMPLEADO - NOMBRE - GENERO- SALARIO BASICO
     // - ESTRATO - HORAS EXTRA LABORADAS (H.E)-FECHA VINCULACION.
 
     private int id;

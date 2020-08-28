@@ -129,6 +129,11 @@ public  class Tux {
 
             main.shellSort();
             main.getShowInformation();
+             ImageIcon shell = new ImageIcon("Shell.jpg");
+           
+                JOptionPane.showMessageDialog(
+                null,"","Shell IMAGE",JOptionPane.INFORMATION_MESSAGE,shell);
+           
        
         }catch(ArrayIndexOutOfBoundsException c){
         JOptionPane.showMessageDialog(null,"Please be logic");
@@ -140,10 +145,10 @@ public  class Tux {
         Exit=JOptionPane.showConfirmDialog(null, "¿Do you want to exit from the Menu?");
         if (Exit==0) {
 
-                ImageIcon shell = new ImageIcon("Shell.jpg");
+                ImageIcon closed = new ImageIcon("Closed.jpg");
            
                 JOptionPane.showMessageDialog(
-                null,"","Shell IMAGE",JOptionPane.INFORMATION_MESSAGE,shell);
+                null,"","CLOSED IMAGE",JOptionPane.INFORMATION_MESSAGE,closed);
            
          
         break;
